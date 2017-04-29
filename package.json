@@ -1,23 +1,27 @@
 {
   "name": "chandwat",
-  "version": "1.0.0",
+  "version": "0.0.1",
+  "description": "A sample Node.js app using socket.io",
   "engines": {
-    "node": "6.x.x"
+    "node": "6.10.2"
   },
-  "description": "First test for Chandwatt web-app",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "get-json": "0.0.3",
+    "socket.io": "^1.7.3"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/h4med/chandwatt"
   },
-  "author": "HameD",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.15.2",
-    "get-json": "0.0.3",
-    "socket.io": "^1.7.3"
-  }
+  "keywords": [
+    "node",
+    "heroku",
+    "socket.io"
+  ],
+  "license": "MIT"
 }

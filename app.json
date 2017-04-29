@@ -1,0 +1,8 @@
+{
+  "name": "Start on Heroku: Node.js",
+  "description": "A barebones Node.js app using socket.io",
+  "repository": "https://github.com/h4med/chandwatt",
+  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["node", "socket.io", "heroku"],
+  "image": "heroku/nodejs"
+}

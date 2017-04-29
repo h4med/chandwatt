@@ -1,0 +1,19 @@
+{
+  "name": "chandwat",
+  "version": "1.0.0",
+  "engines": {
+    "node": "6.x.x"
+  },
+  "description": "First test for Chandwatt web-app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "HameD",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "get-json": "0.0.3",
+    "socket.io": "^1.7.3"
+  }
+}

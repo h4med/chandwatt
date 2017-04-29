@@ -11,7 +11,7 @@ var getJSON=require('get-json');
 io.set('heartbeat timeout', 3000);
 io.set('heartbeat interval', 1000);
 */
-server.listen(80, function(){
+server.listen(5000, function(){
 	if (DEBUG) console.log('[ Welocme :) ]\nlistening on port 3000 ...');
 });
 

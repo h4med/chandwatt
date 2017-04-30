@@ -1,4 +1,4 @@
-var DEBUG = true;
+var DEBUG = false;
 
 var express = require('express');
 var app = express();
@@ -19,9 +19,9 @@ server.listen(process.env.PORT || 5000, function(){
 app.use(express.static(__dirname + "/public"));
 
 io.on('connection', function(socket){
-	console.log('a user conneced!');
+	if (DEBUG) console.log('a user conneced!');
 	socket.on('disconnect',function(){
-		console.log('user disconnected!');
+		if (DEBUG) console.log('user disconnected!');
 	});
 });
 
@@ -35,15 +35,15 @@ function readFromTS() {
 	getJSON('http://api.thingspeak.com/channels/250169/feed/last.json?api_key=0IQ714JPWHFP72FK',function(error, resp){
 
 		if (resp) {
-		    console.log("Entre ID: ", resp.entry_id);
-		    console.log("Field 1: ", resp.field1);
-		    console.log("Field 2: ", resp.field2);
+		    if (DEBUG) console.log("Entre ID: ", resp.entry_id);
+		    if (DEBUG) console.log("Field 1: ", resp.field1);
+		    if (DEBUG) console.log("Field 2: ", resp.field2);
 		    
 		    io.emit('ts_Watt', resp.field1);
 		    io.emit('ts_Temperature', resp.field2);
 		    if(resp.field3){
 		    	io.emit('ts_WattH', resp.field3);
-		    	console.log("Field 3:", resp.field3);
+		    	if (DEBUG) console.log("Field 3:", resp.field3);
 			Accu = 0;
 
 		    }
@@ -53,14 +53,14 @@ function readFromTS() {
 			WattH = WattH.toFixed(1);
 
 			io.emit('ts_WattH', WattH);
-			console.log("Field 3 [cal]: ", WattH);
+			if (DEBUG) console.log("Field 3 [cal]: ", WattH);
 		    }
 		}
 		else {
-		  console.log("getChannelFeeds Error:" +err);
+		  if (DEBUG) console.log("getChannelFeeds Error:" +err);
 		}
 		
-		console.log("-----------------------------\n");	
+		if (DEBUG) console.log("-----------------------------\n");	
 
 	});
 

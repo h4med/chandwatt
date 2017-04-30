@@ -26,6 +26,8 @@ io.on('connection', function(socket){
 });
 
 
+var Accu=0;
+var WattH;
 
 function readFromTS() {
 
@@ -33,24 +35,37 @@ function readFromTS() {
 	getJSON('http://api.thingspeak.com/channels/250169/feed/last.json?api_key=0IQ714JPWHFP72FK',function(error, resp){
 
 		if (resp) {
-		    console.log(resp.entry_id);
-		    console.log(resp.field1);
-		    console.log(resp.field2);
+		    console.log("Entre ID: ", resp.entry_id);
+		    console.log("Field 1: ", resp.field1);
+		    console.log("Field 2: ", resp.field2);
 		    
 		    io.emit('ts_Watt', resp.field1);
 		    io.emit('ts_Temperature', resp.field2);
 		    if(resp.field3){
 		    	io.emit('ts_WattH', resp.field3);
-		    	console.log(resp.field3);
+		    	console.log("Field 3:", resp.field3);
+			Accu = 0;
+
+		    }
+		    else{
+			Accu += Number(resp.field1);
+			WattH = Accu / 1200;
+			WattH = WattH.toFixed(1);
+
+			io.emit('ts_WattH', WattH);
+			console.log("Field 3 [cal]: ", WattH);
 		    }
 		}
 		else {
 		  console.log("getChannelFeeds Error:" +err);
-		}	
+		}
+		
+		console.log("-----------------------------\n");	
 
 	});
 
 	setTimeout(function(){readFromTS()}, 2000);
+	
 }
 
 readFromTS();
